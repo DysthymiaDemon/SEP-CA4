@@ -1,5 +1,0 @@
-Folder:
-https://github.com/DMIT-SDS/IslandFurniture_Enterprise-Student
-
-Git:
-https://github.com/DMIT-SDS/IslandFurniture_Enterprise-Student.git
