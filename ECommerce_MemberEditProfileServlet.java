@@ -33,20 +33,25 @@ public class ECommerce_MemberEditProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        boolean isSuccess = false;
+      try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            String email = request.getParameter("email");
+            String name = request.getParameter("name");
+            String phone = request.getParameter("phone");
+            String country = request.getParameter("country");
+            String address = request.getParameter("address");
+            int securityQuestion = Integer.parseInt(request.getParameter("securityQuestion"));
+            String securityAnswer = request.getParameter("securityAnswer");
+            int age = Integer.parseInt(request.getParameter("age"));
+            int income = Integer.parseInt(request.getParameter("income"));
+            String password = request.getParameter("password");
 
-        Long id = Long.parseLong(request.getParameter("id"));
-        String email = request.getParameter("email");
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String country = request.getParameter("country");
-        String address = request.getParameter("address");
-        int securityQuestion = Integer.parseInt(request.getParameter("securityQuestion"));
-        String securityAnswer = request.getParameter("securityAnswer");
-        int age = Integer.parseInt(request.getParameter("age"));
-        int income = Integer.parseInt(request.getParameter("income"));
-        String password = request.getParameter("password");
+            isSuccess = updateMember(id, email, name, phone, country, address, securityQuestion, securityAnswer, age, income, password);
 
-        boolean isSuccess = updateMember(id, email, name, phone, country, address, securityQuestion, securityAnswer, age, income, password);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         if (isSuccess) {
             response.sendRedirect("ECommerce_GetMember?goodMsg=Account Successfully Updated");
